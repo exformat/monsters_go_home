@@ -2,6 +2,17 @@ package com.exformatgames.mgh.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.exformatgames.mgh.audio.Musics;
+import com.exformatgames.mgh.audio.Sounds;
 
 public class LoadingScreen implements Screen {
 
@@ -19,7 +30,16 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void show() {
+        camera = new OrthographicCamera();
+        viewport = new ExtendViewport(12.8f, 7.2f, 24f, 10.8f, camera);
+        viewport.apply(true);
 
+        batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
+        assetManager = new AssetManager();
+
+        backgroundSprite = new Sprite(new Texture("loading_background.png"));
+        backgroundSprite.setSize(7.2f, 7.2f);
     }
 
     @Override
