@@ -6,6 +6,12 @@ import com.badlogic.gdx.Screen;
 public class LoadingScreen implements Screen {
 
     private final Game game;
+    private AssetManager assetManager;
+    private Viewport viewport;
+    private OrthographicCamera camera;
+    private Sprite backgroundSprite;
+    private SpriteBatch batch;
+    private ShapeRenderer shapeRenderer;
 
     public LoadingScreen(Game game) {
         this.game = game;
