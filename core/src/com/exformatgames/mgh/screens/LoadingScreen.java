@@ -44,12 +44,37 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 1, true);
 
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+        shapeRenderer.setProjectionMatrix(camera.combined);
+
+        batch.begin();
+        backgroundSprite.draw(batch);
+        batch.end();
+
+        assetManager.update();
+
+        float loadingLine = viewport.getWorldWidth() * assetManager.getProgress();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.rect(0, 0.5f, loadingLine, 1);
+        shapeRenderer.end();
+
+
+        if(assetManager.isFinished()){
+            Sounds.init(assetManager);
+            Musics.init(assetManager);
+
+            StartScreen startScreen = new StartScreen(game, assetManager, null);
+            game.setScreen(startScreen);
+
+        }
     }
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width, height, true);
     }
 
     @Override
